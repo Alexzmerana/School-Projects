@@ -96,11 +96,6 @@ public final class WordCounter {
 
     }
 
-    public static Queue<String> listOfWords(String text) {
-
-        return null;
-    }
-
     /**
      * Takes in data from text file and puts it in a queue.
      *
@@ -110,6 +105,7 @@ public final class WordCounter {
      */
     public static Queue<String> dataEntry(SimpleReader in) {
         String separators = " .,?!\t ";
+
         Set<Character> separatorsSet = generateElements(separators);
         Queue<String> words = new Queue1L<String>();
         while (!in.atEOS()) {
@@ -118,7 +114,9 @@ public final class WordCounter {
             while (position < line.length()) {
                 String data = nextWordOrSeparator(line, position,
                         separatorsSet);
-                words.enqueue(data);
+                if (!data.contains(pp)) {
+                    words.enqueue(data);
+                }
                 position += data.length();
             }
         }
